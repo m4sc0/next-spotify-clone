@@ -39,6 +39,11 @@ const UploadModal = () => {
         }
     };
 
+    if (!user) {
+        toast.error("You must be logged in to upload a song!");
+        return;
+    }
+
     const onSubmit: SubmitHandler<FieldValues> = async (values) => {
         try {
             setIsLoading(true);
