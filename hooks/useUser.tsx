@@ -39,7 +39,7 @@ export const MyUserContextProvider = (props: Props) => {
             .select('*, prices(*, products(*))')
             .in('status', ['trialing', 'active'])
             .single();
-    
+
     useEffect(() => {
         if (user && !isLoadingData && !userDetails && !subscription) {
             setIsLoadingData(true);

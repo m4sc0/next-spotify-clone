@@ -3,10 +3,36 @@
 import React from 'react'
 import { TbPlaylist } from "react-icons/tb";
 import { AiOutlinePlus } from "react-icons/ai";
+import useAuthModal from '@/hooks/useAuthModal';
+import { useUser } from '@/hooks/useUser';
+import useUploadModal from '@/hooks/useUploadModal';
+import { Song } from '@/types';
+import ListItem from './ListItem';
+import MediaItem from './MediaItem';
+import useOnPlay from '@/hooks/useOnPlay';
 
-const Library = () => {
+interface LibraryProps {
+    songs: Song[];
+}
+
+const Library: React.FC<LibraryProps> = ({
+    songs
+}) => {
+    const authModal = useAuthModal();
+    const uploadModal = useUploadModal();
+    const { user } = useUser();
+
+    const onPlay = useOnPlay(songs);
+
     const onClick = () => {
-        // Handle upload later
+        if (!user) {
+            authModal.onOpen();
+            return;
+        }
+
+        // TODO: check for subscription
+
+        return uploadModal.onOpen();
     };
 
     return (
@@ -52,7 +78,14 @@ const Library = () => {
                 mt-4
                 px-3
             '>
-                List of songs
+                {songs.map((song) => (
+                    <MediaItem
+                        onClick={(id: string) => onPlay(id)}
+                        showLikeButton={true}
+                        key={song.id}
+                        data={song}
+                    />
+                ))}
             </div>
         </div>
     )

@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import { FaPlay } from "react-icons/fa";
 import Image from "next/image";
 import React from 'react'
+import LikeButton from './LikeButton';
 
 interface ListItemProps {
     image: string;
@@ -74,7 +75,7 @@ const ListItem: React.FC<ListItemProps> = ({
                     hover:scale-110
                 '
             >
-                <FaPlay className="text-black"/>
+                <FaPlay className="text-black" />
             </div>
         </button>
     )

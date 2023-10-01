@@ -40,7 +40,7 @@ const Modal: React.FC<ModalProps> = ({
                         border
                         border-neutral-700
                         top-[50%]
-                        md:top-[20%]
+                        md:top-[50%]
                         left-[50%]
                         max-h-full
                         h-full
